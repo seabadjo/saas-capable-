@@ -1,0 +1,109 @@
+{
+  "theme": "Light",
+  "archetype": "Organic & Earthy + Pastel & Soft",
+  "brand": "GUEGON",
+  "slogan": "Automatisez votre prospection. Accélérez votre croissance.",
+  "language": "French",
+  "typography": {
+    "font_family": "Poppins",
+    "headings": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1F2937]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#1F2937]",
+      "h3": "text-xl sm:text-2xl font-semibold text-[#1F2937]",
+      "h4": "text-lg sm:text-xl font-medium text-[#1F2937]"
+    },
+    "body": "text-base leading-relaxed text-[#1F2937]/80",
+    "small": "text-sm text-[#1F2937]/60",
+    "labels": "text-xs font-semibold uppercase tracking-[0.2em] text-[#22819A]"
+  },
+  "colors": {
+    "primary": "#90C2E7",
+    "primary_description": "Light Blue - Used for highlights, subtle backgrounds, and brand identity.",
+    "cta": "#22819A",
+    "cta_description": "Teal - Used for primary buttons, active states, and high-emphasis elements.",
+    "background": "#FEF7F8",
+    "background_description": "Off-white Pink - Main app and landing page background.",
+    "borders": "#CDD4DD",
+    "borders_description": "Light Gray - Used for borders, dividers, and card outlines.",
+    "text_dark": "#1F2937",
+    "text_dark_description": "Dark Gray - Used for primary text and headings.",
+    "white": "#FFFFFF",
+    "text_muted": "#1F293780"
+  },
+  "layout": {
+    "spacing_scale": "p-4, p-6, p-8, p-12, p-16, p-24, p-32",
+    "border_radius": "Rounded 20px (rounded-[20px]) everywhere including cards, buttons, modals.",
+    "shadows": {
+      "soft": "shadow-[0_8px_30px_rgba(0,0,0,0.04)]",
+      "hover": "shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+    },
+    "glassmorphism": {
+      "background": "bg-[#FEF7F8]/70",
+      "blur": "backdrop-blur-xl",
+      "border": "border border-[#CDD4DD]/40",
+      "shadow": "shadow-[0_8px_32px_rgba(0,0,0,0.04)]",
+      "usage": "Sticky headers, floating navs, modals, and premium stat cards."
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#22819A] text-white rounded-[20px] px-6 py-3 font-medium hover:bg-[#1a6b82] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(34,129,154,0.3)] hover:-translate-y-0.5",
+      "secondary": "bg-[#90C2E7]/20 text-[#22819A] rounded-[20px] px-6 py-3 font-medium hover:bg-[#90C2E7]/30 transition-all duration-300",
+      "outline": "border border-[#CDD4DD] text-[#1F2937] bg-white rounded-[20px] px-6 py-3 font-medium hover:border-[#22819A] transition-all duration-300"
+    },
+    "cards": "bg-white border border-[#CDD4DD] rounded-[20px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300",
+    "inputs": "w-full bg-white border border-[#CDD4DD] rounded-[20px] px-4 py-3 text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#90C2E7] focus:border-transparent transition-all duration-300",
+    "table": "w-full text-left text-sm text-[#1F2937]/80. Headers uppercase text-xs tracking-wider text-[#1F2937]/60 pb-3 border-b border-[#CDD4DD]. Rows hover:bg-[#FEF7F8] transition-colors. Tags use rounded-full px-2 py-1 text-xs."
+  },
+  "motion": {
+    "micro_interactions": "All hover states use transition-all duration-300 ease-out. Cards lift up slightly (hover:-translate-y-1).",
+    "fluid_animations": "Use framer-motion for page transitions and staggering lists. Elements fade in and translate up (y: 20 -> 0) on scroll.",
+    "glass_reveal": "Glass panels use a slight scale-in and blur-in effect on mount."
+  },
+  "media": {
+    "images": [
+      {
+        "category": "hero_background_abstract",
+        "url": "https://images.pexels.com/photos/17485657/pexels-photo-17485657.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "3D render abstract digital visualization depicting neural networks and AI technology - perfect for hero right side or background blending."
+      },
+      {
+        "category": "dashboard_analytics_mockup",
+        "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwxfHxncm93dGglMjBjaGFydCUyMGFuYWx5dGljc3xlbnwwfHx8fDE3ODI4MDY3ODV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Graphs of performance analytics on a laptop screen to represent the SaaS platform."
+      },
+      {
+        "category": "solutions_agency_meeting",
+        "url": "https://images.pexels.com/photos/12903168/pexels-photo-12903168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Professional team collaborating on a project in a well-lit office space - use for Solutions (Agencies/Lawyers)."
+      },
+      {
+        "category": "abstract_nodes",
+        "url": "https://images.unsplash.com/photo-1644088379091-d574269d422f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHxuZXR3b3JrJTIwbm9kZXMlMjBhYnN0cmFjdHxlbnwwfHx8fDE3ODI4MDY3ODV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Blue background with lines and dots representing network and automation."
+      }
+    ],
+    "logo_concept": "Stylized 'G' with an upward arrow for growth and connected nodes for automation. Uses #22819A and #90C2E7. Implement using SVG directly in the UI."
+  },
+  "testing": {
+    "attributes": "All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='login-submit-button', data-testid='hero-cta'). Use kebab-case, role-based naming."
+  },
+  "pages_structure": {
+    "landing": {
+      "hero": "H1 Slogan, subtext, primary CTA 'Commencer gratuitement', secondary CTA 'Voir la démo', side image/mockup using abstract nodes.",
+      "features": "Bento grid (rounded 20px, light glassmorphism) showing Lead Finder, Email Finder, Email Verification, CRM Sync, Campaign Builder, AI Personalization, Reports, Team Workspace, API, Notifications.",
+      "solutions": "Alternating blocks with images (lawyers, agencies, real estate, SaaS) showing tailored workflows.",
+      "pricing": "3 cards (Starter, Pro, Enterprise) with middle highlighted, using soft shadows and #90C2E7 borders.",
+      "footer": "Documentation, Blog, Contact links, dark text on #FEF7F8 background."
+    },
+    "auth": "Split screen: left side form (clean SaaS style, glassmorphism card over #FEF7F8), right side abstract nodes or stats mockup.",
+    "dashboard": {
+      "sidebar": "Fixed left, white bg, #CDD4DD border right. Links: Overview, Prospects, Campaigns, Automations, CRM, Pipelines, Workflows, Reports, Settings, Profile. Active link uses #90C2E7/20 bg and #22819A text.",
+      "topbar": "Glassmorphism header, search bar, notifications, user profile.",
+      "overview": "Stats cards at top (new leads, campaigns, open rate, replies, meetings booked). Funnel/Growth chart below.",
+      "prospects_table": "Filters at top (Tags, Scores). Table with checkboxes, avatars, company, email, score. Actions dropdown.",
+      "campaign_builder": "Visual node-based UI or step-by-step wizard with connected nodes styling (matching logo concept)."
+    }
+  },
+  "icons": "Use lucide-react. Stroke width 1.5. Colors match text or CTA."
+}
