@@ -52,8 +52,17 @@ export default function Overview() {
 
       <div className="mt-8 grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 rounded-[24px] bg-white border border-[#CDD4DD] p-6">
-          <h2 className="text-lg font-semibold text-[#1F2937]">Funnel de prospection</h2>
-          <p className="mt-1 text-sm text-[#1F2937]/60">Conversion par étape (30 derniers jours)</p>
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <h2 className="text-lg font-semibold text-[#1F2937]">Funnel de prospection</h2>
+              <p className="mt-1 text-sm text-[#1F2937]/60">Conversion par étape (30 derniers jours)</p>
+            </div>
+            {!stats?.total_prospects && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#90C2E7]/25 text-[#22819A] text-[11px] font-semibold uppercase tracking-[0.15em]">
+                Données de démonstration
+              </span>
+            )}
+          </div>
 
           <div className="mt-6 space-y-4">
             {[
@@ -84,7 +93,14 @@ export default function Overview() {
         </div>
 
         <div className="rounded-[24px] bg-white border border-[#CDD4DD] p-6">
-          <h2 className="text-lg font-semibold text-[#1F2937]">Activité récente</h2>
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-lg font-semibold text-[#1F2937]">Activité récente</h2>
+            {!stats?.total_prospects && (
+              <span className="px-2 py-0.5 rounded-full bg-[#90C2E7]/25 text-[#22819A] text-[10px] font-semibold uppercase tracking-[0.15em]">
+                Démo
+              </span>
+            )}
+          </div>
           <ul className="mt-5 space-y-4">
             {[
               { t: "Nouveau prospect ajouté", d: "Acme Corp · il y a 5 min" },
