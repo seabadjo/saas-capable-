@@ -1,0 +1,38 @@
+{
+  "summary": "First-pass full E2E testing of GUEGON. Backend: 16/16 pytest passing including auth, prospects/campaigns CRUD, refresh/logout, stats, contact, AI email via Claude Sonnet 4.5. Frontend: landing, nav, pricing, contact, protected route, login (success & failure with French error), register, session persistence after reload, prospects create+delete, campaigns create, AI email generation (Claude returns rich French email), and logout all working. Only fix applied: added missing data-testid=nav-logout-btn on the dashboard sidebar logout button.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api (CORS)", "issue": "CORS_ORIGINS=\"*\" with allow_credentials=True; code correctly falls back to FRONTEND_URL only, but having a wildcard env var is misleading and risky. Recommend setting CORS_ORIGINS explicitly to the frontend URL."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "DashboardLayout sidebar", "issue": "Logout button was missing data-testid=nav-logout-btn (NAV.logoutBtn constant existed). Fixed by testing agent.", "selector": "button containing 'Déconnexion' in sidebar", "priority": "LOW"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Dashboard Overview", "issues": ["'Funnel de prospection' (1000/820/351/117/31) and 'Activité récente' (Acme Corp / Lina Marketing / Q1 Outbound / 5 nouvelles réponses) are HARDCODED placeholder data. A freshly-registered user with 0 prospects still sees these numbers, which is misleading. Should be wired to real data or labelled as demo, or hidden when no data exists."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Replace hardcoded 'Funnel de prospection' numbers and 'Activité récente' items on Dashboard Overview with real data (or hide when no data).",
+    "Tighten backend/.env CORS_ORIGINS to the explicit frontend URL instead of '*' (code already protects via fallback, but the env value is misleading)."
+  ],
+  "critical_code_review_comments": [
+    "server.py: clean and well-structured (~500 lines, no need to split). ObjectId is correctly excluded via _prospect_to_dict / _campaign_to_dict / serialize_user.",
+    "Auth cookies correctly set httpOnly + Secure + SameSite=None; verified session persists after reload via /api/auth/me.",
+    "formatApiErrorDetail in lib/api.js correctly handles FastAPI 422 validation arrays — confirmed: failed login shows 'Email ou mot de passe incorrect' string (not [object Object]).",
+    "AI email endpoint uses Claude Sonnet 4.5 via emergentintegrations as required and parses SUJET/CORPS format reliably.",
+    "Brute-force lockout NOT implemented (playbook asks for lockout after 5 fails). Not in MVP scope per problem statement but worth noting.",
+    "bcrypt hash format verified ($2b$) via successful login of seeded admin."
+  ],
+  "updated_files": ["/app/frontend/src/pages/dashboard/DashboardLayout.jsx", "/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "100% (16/16)", "frontend": "100% (12/12 flows after testid fix)"},
+  "test_credentials": "admin@guegon.io / Admin123! (seeded). Test users created via /api/auth/register with TEST_/uitest_ prefix.",
+  "seed_data_creation": "Test prospects/campaigns/users prefixed TEST_ or UI_TEST_ or uitest_. Backend tests delete their own data; UI test prospect deleted; UI test campaign 'UI_TEST_Camp' remains for admin (negligible).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend test file at /app/backend/tests/backend_test.py uses pytest with REACT_APP_BACKEND_URL env. AI email test uses 60s timeout (Claude may take ~20-30s). Admin is seeded on backend startup. Cookies are httpOnly+Secure+SameSite=None, so use a requests.Session() to test authenticated endpoints."
+}

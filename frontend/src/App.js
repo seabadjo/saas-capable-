@@ -1,56 +1,93 @@
-import { useEffect } from "react";
+import React from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import { HOME } from "@/constants/testIds";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Toaster } from "sonner";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ProtectedRoute from "@/components/ProtectedRoute";
+import { AuthProvider } from "@/lib/auth";
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+import Landing from "@/pages/Landing";
+import Features from "@/pages/Features";
+import Solutions from "@/pages/Solutions";
+import Pricing from "@/pages/Pricing";
+import Contact from "@/pages/Contact";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
+import DashboardLayout from "@/pages/dashboard/DashboardLayout";
+import Overview from "@/pages/dashboard/Overview";
+import Prospects from "@/pages/dashboard/Prospects";
+import Campaigns from "@/pages/dashboard/Campaigns";
+import AIEmail from "@/pages/dashboard/AIEmail";
+import Settings from "@/pages/dashboard/Settings";
 
+function PublicLayout({ children }) {
+  const { pathname } = useLocation();
+  const hideChrome =
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/register") ||
+    pathname.startsWith("/dashboard");
   return (
-    <div>
-      <header className="App-header">
-        <a
-          data-testid={HOME.emergentLink}
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
+    <>
+      {!hideChrome && <Navbar />}
+      <div className={!hideChrome ? "" : ""}>{children}</div>
+      {!hideChrome && <Footer />}
+    </>
   );
-};
+}
 
-function App() {
+function AppRoutes() {
   return (
-    <div className="App">
+    <PublicLayout>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Overview />} />
+          <Route path="prospects" element={<Prospects />} />
+          <Route path="campaigns" element={<Campaigns />} />
+          <Route path="ai-email" element={<AIEmail />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Routes>
+    </PublicLayout>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="App min-h-screen bg-[#FEF7F8]">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
+        <AuthProvider>
+          <AppRoutes />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                borderRadius: "16px",
+                border: "1px solid #CDD4DD",
+                background: "#FFFFFF",
+                color: "#1F2937",
+              },
+            }}
+          />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
 }
-
-export default App;
